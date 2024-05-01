@@ -10,7 +10,7 @@ import 'aos/dist/aos.css';
 import '@/common/styles/globals.css';
 
 import Layout from '@/common/components/layouts';
-import { firaCode, jakartaSans, soraSans } from '@/common/styles/fonts';
+import { firaCode, poppins, soraSans } from '@/common/styles/fonts';
 
 import defaultSEOConfig from '../../next-seo.config';
 
@@ -26,14 +26,13 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
       delay: 50,
     });
   }, []);
-
   return (
     // eslint-disable-next-line react/no-unknown-property
     <>
-      <style>
+      <style jsx global>
         {`
           html {
-            --jakartaSans-font: ${jakartaSans.style.fontFamily};
+            --poppies-font: ${poppins.style.fontFamily};
             --soraSans-font: ${soraSans.style.fontFamily};
             --firaCode-font: ${firaCode.style.fontFamily};
           }

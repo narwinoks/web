@@ -4,12 +4,12 @@ const metaDescription =
   'Seasoned Software Engineer especially in Frontend side, with a passion for creating pixel-perfect web experiences';
 
 const defaultSEOConfig = {
-  defaultTitle: 'Ryan Aulia - Personal Website',
+  defaultTitle: 'Winarno - Personal Website',
   description: metaDescription,
   canonical: canonicalUrl,
   openGraph: {
     canonical: canonicalUrl,
-    title: 'Ryan Aulia - Personal Website',
+    title: 'Winarno - Personal Website',
     description: metaDescription,
     type: 'website',
     images: [
