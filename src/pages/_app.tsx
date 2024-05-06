@@ -9,7 +9,7 @@ import '@/common/styles/globals.css';
 import Layout from '@/common/components/layouts';
 import {
   firaCode,
-  jakartaSans,
+  PoppinsSans,
   onestSans,
   soraSans,
 } from '@/common/styles/fonts';
@@ -28,7 +28,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
       <style jsx global>
         {`
           html {
-            --jakartaSans-font: ${jakartaSans.style.fontFamily};
+            --poppins-font: ${PoppinsSans.style.fontFamily};
             --soraSans-font: ${soraSans.style.fontFamily};
             --firaCode-font: ${firaCode.style.fontFamily};
             --onestSans-font: ${onestSans.style.fontFamily};
@@ -36,12 +36,12 @@ const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
         `}
       </style>
       <DefaultSeo {...defaultSEOConfig} />
-        <ThemeProvider attribute='class' defaultTheme='dark'>
-            <Layout>
-              <ProgressBar />
-              <Component {...pageProps} />
-            </Layout>
-        </ThemeProvider>
+      <ThemeProvider attribute='class' defaultTheme='dark'>
+        <Layout>
+          <ProgressBar />
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
     </>
   );
 };
