@@ -3,52 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --color-dark: #121212;
-  --color-light: #fafafa;
-}
-
-html {
-  scroll-behavior: smooth;
-  letter-spacing: 0.3px;
-}
-
-input,
-textarea,
-button,
-select,
-div,
-a {
-  -webkit-tap-highlight-color: transparent;
+  --bg-dark : #2D2D2D;
+  --light-bg :#EEEEEE;
 }
 
 .dark {
-  background-color: var(--color-dark);
-  color: var(--color-light);
+    background-color: var(--bg-dark);
+    color: var(--light-bg);
 }
-
 .light {
-  background-color: var(--color-light);
-  color: var(--color-dark);
-}
-
-#nprogress .bar {
-  background: #15b8a6 !important;
-  height: 2px !important;
-  z-index: 9999999 !important;
-}
-
-#nprogress .bar {
-  position: fixed !important;
-}
-
-::-webkit-scrollbar {
-  @apply w-1;
-}
-
-::-webkit-scrollbar-track {
-  @apply rounded-[3px] bg-transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply rounded-[3px] border-2 border-neutral-300 bg-neutral-600 dark:bg-neutral-400;
+    background-color: var(--light-bg);
+    color: var(--bg-dark);
 }

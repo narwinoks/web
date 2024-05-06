@@ -1,19 +1,13 @@
-import React, { ReactNode } from 'react';
-
-import Navbar from '@/common/components/layouts/Navbar/Navbar';
-
+import React, { ReactNode } from 'react'
 interface LayoutProps {
-  children: ReactNode;
-}
-const Layout = ({ children }: LayoutProps) => {
+    children: ReactNode;
+  }
+const Layout = ({children} : LayoutProps) => {
   return (
-    <main className='w-full flex-auto min-w-0  mt-10  flex flex-col px-2 md:px-0'>
-      <Navbar></Navbar>
-      <div className='content md:px-3 px-0 mt-10'>
+    <div>
         {children}
-      </div>
-    </main>
-  );
-};
+    </div>
+  )
+}
 
-export default Layout;
+export default Layout
