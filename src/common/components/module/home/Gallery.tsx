@@ -4,7 +4,7 @@ import Masonry from "react-responsive-masonry";
 
 const Gallery = () => {
     return (
-        <section className='md:mt-20 mt-10'>
+        <section className='md:mt-12 mt-8'>
             <Masonry columnsCount={3} gutter="10px" className='cursor-pointer'>
                 <div className='relative aspect-w-1 aspect-h-1'>
                     <Image width={1200} height={1200} className='object-cover rounded-md' src="/images/image-gallery-1.png" alt='image-gallery-1'></Image>

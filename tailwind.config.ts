@@ -15,7 +15,9 @@ module.exports = {
         dark: '#2D2D2D',
         light: '#EEEEEE',
         black: '#444444',
-        borderlight: '#E6E6E6',
+        borderLight: '#E6E6E6',
+        borderDark: '#6D6D6D',
+        textLight:"#9F9F9F"
       },
       keyframes: {
         wave: {

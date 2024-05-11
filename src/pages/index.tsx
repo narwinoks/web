@@ -1,6 +1,9 @@
+import About from '@/common/components/module/home/About'
+import Blog from '@/common/components/module/home/Blog'
+import Footer from '@/common/components/module/home/Footer'
 import Gallery from '@/common/components/module/home/Gallery'
 import Info from '@/common/components/module/home/Info'
-import Link from 'next/link'
+import Tech from '@/common/components/module/home/Tech'
 import React from 'react'
 
 const index = () => {
@@ -8,6 +11,10 @@ const index = () => {
     <>
       <Info></Info>
       <Gallery></Gallery>
+      <About />
+      <Blog />
+      <Tech />
+      <Footer />
     </>
 
   )

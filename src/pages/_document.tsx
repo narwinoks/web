@@ -35,7 +35,7 @@ export default function Document() {
         />
         <meta name='theme-color' content='#121212' />
       </Head>
-      <body className='antialiased max-w-2xl mb-40 mt-8 mx-auto'>
+      <body className='antialiased max-w-2xl mb-5 mt-8 mx-auto'>
         <Main />
         <NextScript />
       </body>
