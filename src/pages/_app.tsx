@@ -15,7 +15,7 @@ import {
 } from '@/common/styles/fonts';
 
 import defaultSEOConfig from '../../next-seo.config.js';
-
+import 'react-loading-skeleton/dist/skeleton.css'
 const ProgressBar = dynamic(
   () => import('../common/components/elements/ProgressBar'),
   { ssr: false },
