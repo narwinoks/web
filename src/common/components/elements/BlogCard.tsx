@@ -25,7 +25,7 @@ const BlogCard = ({ title, slug, summary, viewer, time, author }: PropsBlogCard)
                         <div className="flex py-2 items-center text-textLight gap-2 text-sm">
                             <p className="text-sm font-light">{formatNumber(viewer)} views</p>
                             <span className="font-bold mb-1">.</span>
-                            <p className="text-sm font-light">{formatDateToAgo(time)}</p>
+                            <p className="text-sm font-light">{formatDateToAgo(time)} </p>
                         </div>
                         <h2 className="text-sm text-textLight font-light">Authors: {author}</h2>
                     </div>
