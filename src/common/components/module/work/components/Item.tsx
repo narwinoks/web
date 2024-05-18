@@ -10,8 +10,8 @@ const Item = () => {
             {
                 WORK_ITEM.map((item: TypePropsWork, index: number) => {
                     return (
-                        <>
-                            <div className="my-2 w-full" key={index}>
+                        <React.Fragment key={index}>
+                            <div className="my-2 w-full">
                                 <h1 className="text-xl font-medium">{item.company}</h1>
                                 <div className="flex gap-4 items-center mt-2">
                                     <FiMapPin size={16} />
@@ -30,7 +30,7 @@ const Item = () => {
                                 </div>
                             </div>
                             <Hr></Hr>
-                        </>
+                        </React.Fragment>
                     )
                 })
             }
