@@ -1,9 +1,15 @@
 import React, { ReactNode } from 'react'
 import Header from '../header/Header';
+import { useRouter } from 'next/router';
 interface LayoutProps {
   children: ReactNode;
 }
 const Layout = ({ children }: LayoutProps) => {
+  const router = useRouter();
+  const pageName = router.pathname.split('/')[1];
+  const isFullPageHeader =
+    pageName === 'login' ||
+    pageName === 'dashboard';
   return (
     <>
       <Header></Header>
