@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import dynamic from 'next/dynamic';
 import { DefaultSeo } from 'next-seo';
 import { ThemeProvider } from 'next-themes';
+import { SessionProvider } from 'next-auth/react';
 
 import 'tailwindcss/tailwind.css';
 import '@/common/styles/globals.css';
@@ -22,7 +23,6 @@ const ProgressBar = dynamic(
 );
 
 const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
-
   return (
     <>
       <style jsx global>
@@ -36,12 +36,14 @@ const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
         `}
       </style>
       <DefaultSeo {...defaultSEOConfig} />
-      <ThemeProvider attribute='class' defaultTheme='dark'>
-        <Layout>
-          <ProgressBar />
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
+      <SessionProvider>
+        <ThemeProvider attribute='class' defaultTheme='dark'>
+          <Layout>
+            <ProgressBar />
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </SessionProvider>
     </>
   );
 };
