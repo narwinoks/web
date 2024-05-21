@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import Header from '../header/Header';
 import { useRouter } from 'next/router';
+import { counter } from '@/common/constant/counter';
 interface LayoutProps {
   children: ReactNode;
 }
@@ -10,10 +11,21 @@ const Layout = ({ children }: LayoutProps) => {
   const isFullPageHeader =
     pageName === 'login' ||
     pageName === 'dashboard';
+  const [isTimeUp, setIsTimeUp] = useState<boolean>(false);
+
+  useEffect(() => {
+    const difference = +new Date(counter.time) - +new Date();
+    const timer = setTimeout(() => {
+      setIsTimeUp(true);
+    }, difference);
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <>
-      <Header></Header>
-      <div className="layout-overlay layout-menu-toggle"></div>
+      {
+        isTimeUp && <Header></Header>
+      }
       <main className='lg:mx-auto lg:my-20 my-10 mx-4'>
         {children}
       </main>
