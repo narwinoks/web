@@ -1,22 +1,36 @@
 import axios from 'axios';
 import clsx from 'clsx';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import React, { FormEvent, useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+interface FormData {
+    username: string;
+    password: string;
+  }
+  
 const Login = () => {
+    const router = useRouter();
+    const [formData, setFormData] = useState<FormData>({ username: '', password: '' });
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+      };
+    
     const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
+        const { username, password } = formData;
         try {
-            const response = await axios.post('/api/login', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-            console.log("response", JSON.stringify(response.data));
+            const result = await signIn('credentials', {
+                redirect: false,username,password 
+              });
+              if (result?.ok) {
+                router.push("/admin")
+              }
         } catch (error) {
             console.error("Error:", error);
         }
@@ -30,12 +44,12 @@ const Login = () => {
                 <div className="pt-5">
                     <label htmlFor="username" className="text-md">Username</label>
                     <input type="text" id='username' className={clsx('border dark:border-borderDark border-borderLight  rounded-md w-full'
-                        , 'dark:bg-transparent bg-white  focus:outline-none focus:shadow-outline', 'py-2 px-1', 'mt-2')} name="username" placeholder="Enter your username" />
+                        , 'dark:bg-transparent bg-white  focus:outline-none focus:shadow-outline', 'py-2 px-1', 'mt-2')} name="username" placeholder="Enter your username" onChange={handleChange} />
                 </div>
                 <div className="pt-5 relative">
                     <label htmlFor="username" className="text-md">Password</label>
                     <input type={showPassword ? 'text' : 'password'} name="password" id="password" className={clsx('border dark:border-borderDark border-borderLight  rounded-md w-full'
-                        , 'dark:bg-transparent bg-white  focus:outline-none focus:shadow-outline', 'py-2 px-1', 'mt-2')} placeholder="Enter your password" />
+                        , 'dark:bg-transparent bg-white  focus:outline-none focus:shadow-outline', 'py-2 px-1', 'mt-2')} placeholder="Enter your password"  onChange={handleChange}/>
                     <div
                         className="absolute inset-y-0 right-0 top-14 pr-3 flex items-center cursor-pointer"
                         onClick={togglePasswordVisibility}

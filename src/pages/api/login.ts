@@ -1,23 +1,20 @@
-import { getGithubUser } from '@/services/github';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { signIn } from 'next-auth/react';
 
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
+    req: NextApiRequest,
+    res: NextApiResponse,
 ) {
-    try {
-        const { username, password } = req.body
-        const response = {
-            status: 200,
-            data: {
-                username: username,
-                password: 123,
-                token: 1234567890,
-                message: 'login success'
-            }
+    if (req.method === 'POST') {
+        const { username, password } = req.body;
+        console.log(username, password);
+        if (username === 'admin' && password === 'password') {
+            res.status(200).json({ message: 'Login successful' });
+        } else {
+            res.status(401).json({ message: 'Invalid credentials' });
         }
-        return res.status(response.status).json(response.data);
-    } catch (error) {    
+    } else {
+        res.status(405).json({ message: 'Method not allowed' });
     }
 }
