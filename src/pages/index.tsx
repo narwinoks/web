@@ -9,17 +9,7 @@ import { counter } from '@/common/constant/counter';
 import React, { useState, useEffect } from 'react';
 
 const Index = () => {
-  const [isTimeUp, setIsTimeUp] = useState<boolean>(false);
-
-  useEffect(() => {
-    const difference = +new Date(counter.time) - +new Date();
-    const timer = setTimeout(() => {
-      setIsTimeUp(true);
-    }, difference);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+  const [isTimeUp, setIsTimeUp] = useState<boolean>(true);
   return (
     <>
       {isTimeUp ? (

@@ -62,19 +62,19 @@ const Counter = () => {
                         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-light dark:bg-dark px-2">
                             <p className="text-sm font-medium">Hour</p>
                         </div>
-                        <h1 className="text-4xl font-bold">{timeLeft.hours || ""}</h1>
+                        <h1 className="text-4xl font-bold">{timeLeft.hours || "0"}</h1>
                     </div>
                     <div className="relative border dark:border-light border-dark p-4 md:p-8  items-center rounded-lg md:w-auto w-1/2">
                         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-light dark:bg-dark px-2">
                             <p className="text-sm font-medium">Minute</p>
                         </div>
-                        <h1 className="text-4xl font-bold">{timeLeft.minutes || ""}</h1>
+                        <h1 className="text-4xl font-bold">{timeLeft.minutes || "0"}</h1>
                     </div>
                     <div className="relative border dark:border-light border-dark p-4 md:p-8  items-center rounded-lg md:w-auto w-1/2">
                         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-light dark:bg-dark px-2">
                             <p className="text-sm font-medium">Second</p>
                         </div>
-                        <h1 className="text-4xl font-bold">{timeLeft.seconds || ""}</h1>
+                        <h1 className="text-4xl font-bold">{timeLeft.seconds || "0"}</h1>
                     </div>
                 </div>
             )}
