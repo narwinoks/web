@@ -13,22 +13,22 @@ export const FILTER_BLOG_ITEMS: FilterBlogProps[] = [
     },
     {
         label: 'Code',
-        value: 'code',
+        value: '1',
         icon: <IoIosCode size={20} />
     },
     {
         label: 'Design',
-        value: 'design',
+        value: '2',
         icon: <AiOutlineAntDesign size={20} />
     },
     {
         label: 'OS',
-        value: 'os',
+        value: '3',
         icon: <MdOutlineTerminal size={20} />
     },
     {
         label: 'Other',
-        value: 'other',
+        value: '4',
         icon: <GrMoreVertical size={20} />
     }
 ];

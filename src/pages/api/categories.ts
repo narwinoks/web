@@ -6,8 +6,14 @@ export default async function handler(
     res: NextApiResponse,
   ) {
     if (req.method === 'GET') {
-        const response = await prisma.contents.findMany();
-        res.status(200).json({ status: true, data: response });
+      const data = await prisma.category.findMany();
+      console.log(JSON.stringify(data));
+      const response = data.map((element: any) => ({
+        value: element.id,
+        label: element.name,
+        icon: element.icon,
+      }));
+      res.status(200).json({ status: true, data: response });
     }else{
         res.status(405).json({ message: 'Method not allowed' });
     }

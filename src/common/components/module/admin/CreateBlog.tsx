@@ -1,10 +1,18 @@
 import clsx from 'clsx';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "react-quill/dist/quill.bubble.css";
-import ReactQuill from "react-quill";;
+import ReactQuill from "react-quill";
+import { FilterBlogProps } from '@/common/types/filterBlog';
+import { api } from '@/common/libs/useApi';;
 const CreateBlog = () => {
     const [value, setValue] = useState<string>("");
+    const [categories, setCategories] = useState<FilterBlogProps[]>([]);
+    useEffect(() => {
+        api.get("/api/categories").then((response) => {
+            setCategories(response.data.data);
+        })
+    }, []);
     return (
         <section>
             <h1 className="font-semibold text-xl">Create Blog</h1>
@@ -15,10 +23,21 @@ const CreateBlog = () => {
                         , 'bg-transparent  focus:outline-none focus:shadow-outline', 'py-2 px-4 mt-1')} />
                 </div>
                 <div className="mt-2">
+                    <select
+                    name="category"
+                    id="category"
+                    className={clsx(
+                        'border border-[#DBDBDB] dark:border-borderDark rounded-md w-full',
+                        'bg-transparent focus:outline-none focus:shadow-outline',
+                        'py-2 px-4 mt-1'
+                    )}
+                    >
                     <label htmlFor="Category">Category</label>
-                    <select name="category" id="category" className={clsx('border border-[#DBDBDB] dark:border-borderDark rounded-md w-full'
-                        , 'bg-transparent  focus:outline-none focus:shadow-outline', 'py-2 px-4 mt-1')}>
-                        <option value="">Select category</option>
+                    {
+                       categories &&  categories.map((category,index) => (
+                            <option value={category.value} key={index}>{category.label}</option>
+                        ))
+                    }
                     </select>
                 </div>
                 <div className="mt-2">

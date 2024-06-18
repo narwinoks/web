@@ -7,13 +7,12 @@ export const saveBlog = async (data: any)=> {
     const response: { data: any; status: number; error?: string } = { data: null, status: 500 };
     try {
         const stringSlug = slug(data.title, '-');
-        const blog = await prisma.contents.create({
+        const blog = await prisma.post.create({
             data: {
                 title: data.title,
                 slug: stringSlug,
                 category: data.category,
                 status : true
-                // body: data.body,
             },
         });
         response.data = blog;
