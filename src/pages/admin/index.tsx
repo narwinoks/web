@@ -1,13 +1,13 @@
-import Admin from '@/common/components/module/admin'
-import { useSession } from 'next-auth/react'
-import React, { useEffect } from 'react'
+import React from 'react';
+
+import Admin from '@/common/components/module/admin';
 
 const index = () => {
-    return (
-        <>
-            <Admin></Admin>
-        </>
-    )
-}
+  return (
+    <>
+      <Admin></Admin>
+    </>
+  );
+};
 
-export default index
+export default index;

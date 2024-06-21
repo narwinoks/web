@@ -1,11 +1,12 @@
-import React from 'react'
-import Contributions from './Contributions'
+import React from 'react';
+
 import { GITHUB_ACCOUNTS } from '@/common/constant/github';
 
+import Contributions from './Contributions';
 
 const index = () => {
   return (
-    <div className='space-y-10 mt-4'>
+    <div className="mt-4 space-y-10">
       {GITHUB_ACCOUNTS?.filter((account) => account?.is_active).map(
         (account, index) => (
           <Contributions
@@ -17,6 +18,6 @@ const index = () => {
         ),
       )}
     </div>
-  )
-}
-export default index
+  );
+};
+export default index;

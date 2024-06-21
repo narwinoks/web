@@ -1,12 +1,13 @@
-import CreateBlog from '@/common/components/module/admin/CreateBlog'
-import React from 'react'
+import React from 'react';
+
+import CreateBlog from '@/common/components/module/admin/CreateBlog';
 
 const create = () => {
-    return (
-        <section>
-            <CreateBlog></CreateBlog>
-        </section>
-    )
-}
+  return (
+    <section>
+      <CreateBlog></CreateBlog>
+    </section>
+  );
+};
 
-export default create
+export default create;

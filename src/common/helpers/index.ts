@@ -1,61 +1,60 @@
 import { formatDistanceToNow } from 'date-fns';
-import { format, parseISO } from 'date-fns';
-import { utcToZonedTime } from 'date-fns-tz';
-import moment from "moment"
-export const formatDateToAgo=(date: string) =>{
-    return formatDistanceToNow(new Date(date), {
-     addSuffix: true,
-     includeSeconds: false,
-    });
-}
+import moment from 'moment';
+export const formatDateToAgo = (date: string) => {
+  return formatDistanceToNow(new Date(date), {
+    addSuffix: true,
+    includeSeconds: false,
+  });
+};
 
-export const formatNumber = (number: string) => { 
-    let test = Number(number);
-    return new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(test);
-}
+export const formatNumber = (number: string) => {
+  const test = Number(number);
+  return new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(
+    test,
+  );
+};
 
 export const formatDate = (date: string, type = 'DD MMM YYYY') => {
   if (!date) {
     return '';
   }
-  const formattedDate =moment(date).format(type);
+  const formattedDate = moment(date).format(type);
   return formattedDate;
-}
+};
 
 export const timeAgo = (dateInput: string | Date) => {
-    let date: Date;
-    if (typeof dateInput === 'string') {
-        date = new Date(dateInput);
-    } else {
-        date = dateInput;
-    }
-    if (isNaN(date.getTime())) {
-        throw new Error("Invalid date");
-    }
+  let date: Date;
+  if (typeof dateInput === 'string') {
+    date = new Date(dateInput);
+  } else {
+    date = dateInput;
+  }
+  if (isNaN(date.getTime())) {
+    throw new Error('Invalid date');
+  }
 
-    const now = new Date();
-    const secondsPast = (now.getTime() - date.getTime()) / 1000;
+  const now = new Date();
+  const secondsPast = (now.getTime() - date.getTime()) / 1000;
 
-    if (secondsPast < 60) {
-        return `${Math.floor(secondsPast)} seconds ago`;
-    }
-    if (secondsPast < 3600) {
-        const minutes = Math.floor(secondsPast / 60);
-        return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-    }
-    if (secondsPast < 86400) {
-        const hours = Math.floor(secondsPast / 3600);
-        return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-    }
-    if (secondsPast < 2592000) {
-        const days = Math.floor(secondsPast / 86400);
-        return `${days} day${days > 1 ? 's' : ''} ago`;
-    }
-    if (secondsPast < 31536000) {
-        const months = Math.floor(secondsPast / 2592000);
-        return `${months} month${months > 1 ? 's' : ''} ago`;
-    }
-    const years = Math.floor(secondsPast / 31536000);
-    return `${years} year${years > 1 ? 's' : ''} ago`;
-}
-
+  if (secondsPast < 60) {
+    return `${Math.floor(secondsPast)} seconds ago`;
+  }
+  if (secondsPast < 3600) {
+    const minutes = Math.floor(secondsPast / 60);
+    return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+  }
+  if (secondsPast < 86400) {
+    const hours = Math.floor(secondsPast / 3600);
+    return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+  }
+  if (secondsPast < 2592000) {
+    const days = Math.floor(secondsPast / 86400);
+    return `${days} day${days > 1 ? 's' : ''} ago`;
+  }
+  if (secondsPast < 31536000) {
+    const months = Math.floor(secondsPast / 2592000);
+    return `${months} month${months > 1 ? 's' : ''} ago`;
+  }
+  const years = Math.floor(secondsPast / 31536000);
+  return `${years} year${years > 1 ? 's' : ''} ago`;
+};

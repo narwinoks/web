@@ -1,12 +1,13 @@
-import EditBlog from '@/common/components/module/admin/EditBlog'
-import React from 'react'
+import React from 'react';
+
+import EditBlog from '@/common/components/module/admin/EditBlog';
 
 const BlogEdit = () => {
-    return (
-        <section>
-            <EditBlog></EditBlog>
-        </section>
-    )
-}
+  return (
+    <section>
+      <EditBlog></EditBlog>
+    </section>
+  );
+};
 
-export default BlogEdit
+export default BlogEdit;

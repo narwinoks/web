@@ -1,4 +1,10 @@
-import axios, { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, AxiosError, AxiosHeaders } from 'axios';
+import axios, {
+  AxiosError,
+  AxiosHeaders,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
 
 // Buat instance API
 const api = axios.create({
@@ -21,7 +27,7 @@ api.interceptors.request.use(
   },
   (error: AxiosError) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 api.interceptors.response.use(
@@ -30,31 +36,44 @@ api.interceptors.response.use(
   },
   (error: AxiosError) => {
     if (error.response?.status === 401) {
-      console.error('Unauthorized, logging out...');
       window.location.href = '/login';
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 // Hook untuk digunakan di komponen React
 export const useApi = () => {
-  const get = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
+  const get = async <T>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): Promise<T> => {
     const response = await api.get<T>(url, config);
     return response.data;
   };
 
-  const post = async <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => {
+  const post = async <T>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig,
+  ): Promise<T> => {
     const response = await api.post<T>(url, data, config);
     return response.data;
   };
 
-  const put = async <T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> => {
+  const put = async <T>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig,
+  ): Promise<T> => {
     const response = await api.put<T>(url, data, config);
     return response.data;
   };
 
-  const del = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
+  const del = async <T>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): Promise<T> => {
     const response = await api.delete<T>(url, config);
     return response.data;
   };

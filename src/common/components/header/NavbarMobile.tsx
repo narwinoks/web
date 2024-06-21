@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { AnimatePresence } from 'framer-motion';
-import ThemeToggleButton from '../elements/ThemeToggleButton'
-import MobileMenuButton from './MobileMenuButton';
-import useIsMobile from '@/common/hooks/useIsMobile';
+import React, { useEffect, useState } from 'react';
+
 import MobileMenu from './MobileMenu';
-import Navigation from './Navigation';
+import MobileMenuButton from './MobileMenuButton';
+import ThemeToggleButton from '../elements/ThemeToggleButton';
 const NavbarMobile = () => {
   const [expandMenu, setExpandMenu] = useState<boolean>(false);
-  const isMobile = useIsMobile();
-  const hideNavbar = () => {
-    setExpandMenu(false);
-  };
 
   useEffect(() => {
     if (expandMenu) {
@@ -25,18 +19,20 @@ const NavbarMobile = () => {
   }, [expandMenu]);
   return (
     <>
-      <div className='flex relative justify-between px-2 shadow-md text-center items-center border-b pb-5 border-light'>
-        <MobileMenuButton expandMenu={expandMenu} setExpandMenu={setExpandMenu} />
+      <div className="relative flex items-center justify-between border-b border-light px-2 pb-5 text-center shadow-md">
+        <MobileMenuButton
+          expandMenu={expandMenu}
+          setExpandMenu={setExpandMenu}
+        />
         <ThemeToggleButton />
         {expandMenu && (
-          <div className='absolute top-full left-0 w-full dark:bg-dark bg-light border border-gray-200 z-10 h-screen'>
+          <div className="absolute left-0 top-full z-10 h-screen w-full border border-gray-200 bg-light dark:bg-dark">
             <MobileMenu setExpandMenu={setExpandMenu}></MobileMenu>
           </div>
         )}
       </div>
-
     </>
-  )
-}
+  );
+};
 
-export default NavbarMobile
+export default NavbarMobile;

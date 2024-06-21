@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { FaGithub } from "react-icons/fa";
 
 interface Contribution {
   date: string;
@@ -60,8 +59,8 @@ const Calendar = ({ data }: CalendarProps) => {
   const contributionColors = data?.colors ?? [];
   return (
     <>
-      <div className='relative flex flex-col'>
-        <ul className='flex justify-end gap-[3px] overflow-hidden text-xs dark:text-neutral-400 md:justify-start'>
+      <div className="relative flex flex-col">
+        <ul className="flex justify-end gap-[3px] overflow-hidden text-xs dark:text-neutral-400 md:justify-start">
           {months.map((month) => (
             <li
               key={month.firstDay}
@@ -73,7 +72,7 @@ const Calendar = ({ data }: CalendarProps) => {
           ))}
         </ul>
 
-        <div className='flex justify-start gap-[3px] mt-2 overflow-hidden'>
+        <div className="mt-2 flex justify-start gap-[3px] overflow-hidden">
           {weeks?.map((week) => (
             <div key={week.firstDay}>
               {week.contributionDays.map((contribution) => {
@@ -86,8 +85,8 @@ const Calendar = ({ data }: CalendarProps) => {
                 return (
                   <motion.span
                     key={contribution.date}
-                    initial='initial'
-                    animate='animate'
+                    initial="initial"
+                    animate="animate"
                     variants={{
                       initial: { opacity: 0, translateY: -20 },
                       animate: {
@@ -96,7 +95,7 @@ const Calendar = ({ data }: CalendarProps) => {
                         transition: { delay: getRandomDelayAnimate },
                       },
                     }}
-                    className='my-[2px] block h-[9.7px] w-[9.7px] rounded-sm bg-neutral-300 dark:bg-neutral-800'
+                    className="my-[2px] block h-[9.7px] w-[9.7px] rounded-sm bg-neutral-300 dark:bg-neutral-800"
                     style={backgroundColor ? { backgroundColor } : undefined}
                     onMouseEnter={() =>
                       setSelectContribution({
@@ -115,16 +114,16 @@ const Calendar = ({ data }: CalendarProps) => {
         </div>
       </div>
 
-      <div className='flex flex-wrap items-center justify-between gap-2'>
-        <div className='flex items-center gap-2 text-sm'>
-          <span className='dark:text-neutral-400'>Less</span>
-          <ul className='flex gap-1'>
-            <motion.li className='h-[10px] w-[10px] rounded-sm bg-neutral-300 dark:bg-neutral-800' />
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="flex items-center gap-2 text-sm">
+          <span className="dark:text-neutral-400">Less</span>
+          <ul className="flex gap-1">
+            <motion.li className="h-[10px] w-[10px] rounded-sm bg-neutral-300 dark:bg-neutral-800" />
             {contributionColors.map((item, index) => (
               <motion.li
                 key={item}
-                initial='initial'
-                animate='animate'
+                initial="initial"
+                animate="animate"
                 variants={{
                   initial: { opacity: 0 },
                   animate: {
@@ -132,7 +131,7 @@ const Calendar = ({ data }: CalendarProps) => {
                     transition: { delay: index * 0.3 },
                   },
                 }}
-                className='h-[10px] w-[10px] rounded-sm'
+                className="h-[10px] w-[10px] rounded-sm"
                 style={{ backgroundColor: item }}
               />
             ))}

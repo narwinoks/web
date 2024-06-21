@@ -1,18 +1,20 @@
-import React from 'react'
-import Heading from './Heading'
-import Hr from '@/common/components/elements/Hr'
-import Wakatime from './wakatime/Wakatime'
-import Github from './github'
+import React from 'react';
+
+import Hr from '@/common/components/elements/Hr';
+
+import Github from './github';
+import Heading from './Heading';
+import Wakatime from './wakatime/Wakatime';
 
 const Dashboard = () => {
-    return (
-        <>
-            <Heading></Heading>
-            <Hr></Hr>
-            <Wakatime></Wakatime>
-            <Github></Github>
-        </>
-    )
-}
+  return (
+    <>
+      <Heading></Heading>
+      <Hr></Hr>
+      <Wakatime></Wakatime>
+      <Github></Github>
+    </>
+  );
+};
 
-export default Dashboard
+export default Dashboard;

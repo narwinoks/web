@@ -1,15 +1,16 @@
-import Blog from '@/common/components/module/blog';
 import { NextSeo } from 'next-seo';
-import React from 'react'
+import React from 'react';
+
+import Blog from '@/common/components/module/blog';
 
 const PAGE_TITLE = 'Blogs';
 const index = () => {
-    return (
-        <section>
-            <NextSeo title={`${PAGE_TITLE} - Winarno`} />
-            <Blog></Blog>
-        </section>
-    )
-}
+  return (
+    <section>
+      <NextSeo title={`${PAGE_TITLE} - Winarno`} />
+      <Blog></Blog>
+    </section>
+  );
+};
 
-export default index
+export default index;
