@@ -8,7 +8,15 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   if (req.method === 'POST') {
-    const data = await saveBlog(req.body);
+    let data: any = {};
+    try {
+      data = await saveBlog(req.body);
+    } catch (error) {
+      data = {
+        status: 500,
+        data: error,
+      };
+    }
     res.status(data.status).json({ status: true, data: data.data });
   } else if (req.method === 'GET') {
     const response = await prisma.posts.findMany();

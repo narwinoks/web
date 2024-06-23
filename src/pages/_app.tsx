@@ -7,7 +7,6 @@ import { ThemeProvider } from 'next-themes';
 import 'tailwindcss/tailwind.css';
 import '@/common/styles/globals.css';
 import 'react-loading-skeleton/dist/skeleton.css';
-import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 
 import Layout from '@/common/components/layouts';
