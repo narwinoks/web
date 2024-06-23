@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import prisma from '@/common/libs/prisma';
-import { saveBlog } from '@/services/contents';
+import { getBlogs, saveBlog } from '@/services/contents';
 
 export default async function handler(
   req: NextApiRequest,
@@ -19,8 +18,11 @@ export default async function handler(
     }
     res.status(data.status).json({ status: true, data: data.data });
   } else if (req.method === 'GET') {
-    const response = await prisma.posts.findMany();
-    res.status(200).json({ status: true, data: response });
+    const { limit, offset } = req.query;
+    const limitNumber = parseInt(limit as string, 10) || 10;
+    const offsetNumber = parseInt(offset as string, 10) || 0;
+    const response = await getBlogs(limitNumber, offsetNumber);
+    res.status(response.status).json(response);
   } else {
     res.status(405).json({ message: 'Method not allowed' });
   }

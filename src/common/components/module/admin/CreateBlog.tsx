@@ -14,15 +14,18 @@ type BlogProps = {
   title: string;
   body: string;
   categoryId: string;
+  excerpt: string;
 };
 const CreateBlog = () => {
   const [value, setValue] = useState<string>('');
   const [categories, setCategories] = useState<FilterBlogProps[]>([]);
-  const { status } = useSession();
+  const { data: session, status } = useSession();
+  console.log(session);
   const [data, setData] = useState<BlogProps>({
     title: '',
     body: '',
     categoryId: '',
+    excerpt: '',
   });
   const toast = useToast();
   useEffect(() => {
@@ -35,7 +38,7 @@ const CreateBlog = () => {
     setData((prevData) => ({
       ...prevData,
       body: body,
-      authorId: '1',
+      authorId: session?.user?.id,
     }));
     const json: any = data;
     api
@@ -49,7 +52,6 @@ const CreateBlog = () => {
   };
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
-    console.log(name, ':', value);
     setData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -81,6 +83,22 @@ const CreateBlog = () => {
             )}
           />
         </div>
+      </div>
+      <div className="mt-2">
+        <label htmlFor="excerpt">Excerpt</label>
+        <input
+          id="excerpt"
+          type="text"
+          placeholder="Enter blog excerpt"
+          value={data.excerpt || ''}
+          name="excerpt"
+          onChange={handleInputChange}
+          className={clsx(
+            'w-full rounded-md border border-[#DBDBDB] dark:border-borderDark',
+            'focus:shadow-outline  bg-transparent focus:outline-none',
+            'mt-1 px-4 py-2',
+          )}
+        />
       </div>
       <div className="mt-2">
         <label htmlFor="categoryId">Category</label>

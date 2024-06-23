@@ -8,8 +8,7 @@ import Filter from './Filter';
 const Admin = () => {
   const [search, setSearch] = useState<string>('');
   const [sort, setSort] = useState<string>('');
-  const { status } = useSession();
-
+  const { data: session, status } = useSession();
   const router = useRouter();
   useEffect(() => {
     if (status == 'unauthenticated') {

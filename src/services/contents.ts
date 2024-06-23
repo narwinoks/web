@@ -1,4 +1,4 @@
-import slug from 'slug'; // Pastikan slug diimpor dengan benar
+import slug from 'slug';
 
 import prisma from '@/common/libs/prisma';
 
@@ -14,6 +14,8 @@ export const saveBlog = async (request: any) => {
         title: request.title,
         slug: stringSlug,
         body: request.body,
+        excerpt: request.excerpt,
+        status: true,
         category: {
           connect: {
             id: request.categoryId,
@@ -26,12 +28,48 @@ export const saveBlog = async (request: any) => {
         },
       },
     });
-
     response.data = blog;
     response.status = 200;
   } catch (error: any) {
+    console.log(error);
     response.data = error;
     response.status = 500;
   }
   return response;
+};
+
+export const getBlogs = async (limit: number, offset: number) => {
+  try {
+    const blogs = await prisma.posts.findMany({
+      skip: offset,
+      take: limit,
+      include: {
+        author: {
+          select: {
+            id: true,
+            username: true,
+          },
+        },
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+      where: { status: true },
+    });
+    const totalCount = await prisma.posts.count();
+    return {
+      data: blogs,
+      totalCount: totalCount,
+      status: 200,
+    };
+  } catch (error: any) {
+    console.log(error);
+    return {
+      data: error,
+      status: 500,
+    };
+  }
 };

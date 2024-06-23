@@ -19,19 +19,16 @@ export default NextAuth({
           username: string;
           password: string;
         };
-
-        const user: any = await prisma.user.findUnique({
+        const user = await prisma.user.findUnique({
           where: { username },
         });
 
         if (user && bcrypt.compareSync(password, user.password)) {
           return {
             id: user.id.toString(),
-            name: user.name,
-            email: user.email,
+            username: user.username,
           };
         }
-
         return null;
       },
     }),
@@ -50,8 +47,8 @@ export default NextAuth({
       return token;
     },
     async session({ session, token }) {
-      if (token) {
-        session.id = token.id;
+      if (token && typeof token.id === 'string') {
+        session.user.id = token.id;
       }
       return session;
     },
