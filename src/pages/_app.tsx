@@ -8,6 +8,7 @@ import 'tailwindcss/tailwind.css';
 import '@/common/styles/globals.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import 'primereact/resources/primereact.min.css';
+import 'primereact/resources/themes/saga-blue/theme.css';
 
 import Layout from '@/common/components/layouts';
 import { ToastProvider } from '@/common/hooks/ToastContext';
@@ -36,6 +37,11 @@ const App = ({
             --soraSans-font: ${soraSans.style.fontFamily};
             --firaCode-font: ${firaCode.style.fontFamily};
             --onestSans-font: ${onestSans.style.fontFamily};
+          }
+
+          body,
+          body * {
+            font-family: var(--poppins-font) !important;
           }
         `}
       </style>
