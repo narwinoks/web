@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
 import React, { FormEvent, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
+import { useToastContext } from '@/common/hooks/ToastContext';
 interface FormData {
   username: string;
   password: string;
@@ -10,6 +12,7 @@ interface FormData {
 
 const Login = () => {
   const router = useRouter();
+  const toast = useToastContext();
   const [formData, setFormData] = useState<FormData>({
     username: '',
     password: '',
@@ -34,7 +37,10 @@ const Login = () => {
     });
 
     if (result?.ok) {
+      toast.success({ heading: 'Success', message: 'Login Success' });
       router.push('/admin');
+    } else {
+      toast.error({ heading: 'Warning', message: 'Login Failed' });
     }
   };
 
