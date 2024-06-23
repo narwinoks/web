@@ -7,8 +7,11 @@ import { ThemeProvider } from 'next-themes';
 import 'tailwindcss/tailwind.css';
 import '@/common/styles/globals.css';
 import 'react-loading-skeleton/dist/skeleton.css';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
 
 import Layout from '@/common/components/layouts';
+import { ToastProvider } from '@/common/hooks/ToastContext';
 import {
   firaCode,
   onestSans,
@@ -21,7 +24,6 @@ const ProgressBar = dynamic(
   () => import('../common/components/elements/ProgressBar'),
   { ssr: false },
 );
-
 const App = ({
   Component,
   pageProps: { session: _, ...pageProps },
@@ -40,12 +42,14 @@ const App = ({
       </style>
       <DefaultSeo {...defaultSEOConfig} />
       <SessionProvider>
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <Layout>
-            <ProgressBar />
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
+        <ToastProvider>
+          <ThemeProvider attribute="class" defaultTheme="dark">
+            <Layout>
+              <ProgressBar />
+              <Component {...pageProps} />
+            </Layout>
+          </ThemeProvider>
+        </ToastProvider>
       </SessionProvider>
     </>
   );

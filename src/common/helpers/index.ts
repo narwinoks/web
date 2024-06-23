@@ -1,5 +1,7 @@
 import { formatDistanceToNow } from 'date-fns';
 import moment from 'moment';
+
+import { useToastContext } from '../hooks/ToastContext';
 export const formatDateToAgo = (date: string) => {
   return formatDistanceToNow(new Date(date), {
     addSuffix: true,
@@ -57,4 +59,27 @@ export const timeAgo = (dateInput: string | Date) => {
   }
   const years = Math.floor(secondsPast / 31536000);
   return `${years} year${years > 1 ? 's' : ''} ago`;
+};
+
+export const Alert = (
+  type: 'success' | 'warn' | 'info' | 'error',
+  message: string,
+) => {
+  const toast = useToastContext();
+  switch (type) {
+    case 'success':
+      toast.success({ heading: 'Info', message, duration: 3000 });
+      break;
+    case 'warn':
+      toast.warning({ heading: 'heading', message, duration: 3000 });
+      break;
+    case 'info':
+      toast.info({ heading: 'heading', message, duration: 3000 });
+      break;
+    case 'error':
+      toast.error({ heading: 'heading', message, duration: 3000 });
+      break;
+    default:
+      throw new Error('Invalid alert type');
+  }
 };
