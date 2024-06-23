@@ -20,7 +20,6 @@ const CreateBlog = () => {
   const [value, setValue] = useState<string>('');
   const [categories, setCategories] = useState<FilterBlogProps[]>([]);
   const { data: session, status } = useSession();
-  console.log(session);
   const [data, setData] = useState<BlogProps>({
     title: '',
     body: '',

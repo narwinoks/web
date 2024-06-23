@@ -31,7 +31,6 @@ export const saveBlog = async (request: any) => {
     response.data = blog;
     response.status = 200;
   } catch (error: any) {
-    console.log(error);
     response.data = error;
     response.status = 500;
   }
@@ -66,7 +65,6 @@ export const getBlogs = async (limit: number, offset: number) => {
       status: 200,
     };
   } catch (error: any) {
-    console.log(error);
     return {
       data: error,
       status: 500,
