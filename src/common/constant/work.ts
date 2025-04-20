@@ -3,7 +3,7 @@ import { TypePropsWork } from '../types/work';
 export const WORK_ITEM: TypePropsWork[] = [
   {
     company: 'PT Transindo Data Perkasa',
-    location: 'Yogyarakarta',
+    location: 'Bandung',
     position: 'Junior Software Engineer',
     date: 'Sep 2023 - Present',
     description:
