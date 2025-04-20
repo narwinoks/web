@@ -14,8 +14,8 @@ export const saveBlog = async (request: any) => {
         title: request.title,
         slug: stringSlug,
         body: request.body,
-        excerpt: request.excerpt,
-        status: true,
+        // excerpt: request.excerpt,
+        // status: true,
         category: {
           connect: {
             id: request.categoryId,
@@ -56,7 +56,7 @@ export const getBlogs = async (limit: number, offset: number) => {
           },
         },
       },
-      where: { status: true },
+      // where: { status: true },
     });
     const totalCount = await prisma.posts.count();
     return {

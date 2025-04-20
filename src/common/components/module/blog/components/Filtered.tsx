@@ -33,7 +33,8 @@ const Filtered = ({ setFilter, filter }: FilteredProps) => {
         const IconComponent = iconMap[componentName];
         return {
           ...item,
-          icon: <IconComponent size={20} />,
+          label: item.value,
+          icon: IconComponent ? <IconComponent size={20} /> : null,
         };
       });
       setCategories(transformedData);
@@ -48,11 +49,12 @@ const Filtered = ({ setFilter, filter }: FilteredProps) => {
         filter={filter}
         setFilter={setFilter}
       />
+
       {categories.map((item: FilterBlogProps, index: number) => (
         <Filter
           label={item.label}
           value={item.value}
-          icon={item.icon}
+          icon={<MdOutlineTerminal size={20} />}
           key={index}
           filter={filter}
           setFilter={setFilter}
