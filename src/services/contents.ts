@@ -14,8 +14,6 @@ export const saveBlog = async (request: any) => {
         title: request.title,
         slug: stringSlug,
         body: request.body,
-        // excerpt: request.excerpt,
-        // status: true,
         category: {
           connect: {
             id: request.categoryId,
@@ -42,6 +40,9 @@ export const getBlogs = async (limit: number, offset: number) => {
     const blogs = await prisma.posts.findMany({
       skip: offset,
       take: limit,
+      orderBy: {
+        createdAt: 'desc',
+      },
       include: {
         author: {
           select: {
@@ -56,11 +57,13 @@ export const getBlogs = async (limit: number, offset: number) => {
           },
         },
       },
-      // where: { status: true },
     });
     const totalCount = await prisma.posts.count();
     return {
-      data: blogs,
+      data: blogs.map((element: any) => ({
+        ...element,
+        count: Math.floor(Math.random() * 10),
+      })),
       totalCount: totalCount,
       status: 200,
     };

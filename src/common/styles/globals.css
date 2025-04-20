@@ -3,44 +3,43 @@
 @tailwind utilities;
 
 :root {
-  --bg-dark : #2D2D2D;
-  --light-bg :#EEEEEE;
+  --bg-dark: #2d2d2d;
+  --light-bg: #eeeeee;
 }
 
 .dark {
-    background-color: var(--bg-dark);
-    color: var(--light-bg);
+  background-color: var(--bg-dark);
+  color: var(--light-bg);
 }
 .light {
-    background-color: var(--light-bg);
-    color: var(--bg-dark);
+  background-color: var(--light-bg);
+  color: var(--bg-dark);
 }
 .react-loading-skeleton {
-    background-color: white !important;;
+  background-color: white !important;
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
-
 ::-webkit-scrollbar-thumb {
-    background-color: var(--bg-dark);
+  background-color: var(--bg-dark);
 }
 
 ::-webkit-scrollbar-track {
-    background: #f5f5f5;
+  background: #f5f5f5;
 }
 .layout-overlay {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100% !important;
-    left: 0;
-    display: none;
-    background: #161616;
-    opacity: .5;
-    cursor: pointer;
-    transition: all .5s ease;
-    z-index: 5;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100% !important;
+  left: 0;
+  display: none;
+  background: #161616;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  z-index: 5;
 }

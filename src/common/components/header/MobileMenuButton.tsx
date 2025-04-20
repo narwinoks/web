@@ -2,30 +2,33 @@ import styled from '@emotion/styled';
 import clsx from 'clsx';
 
 interface MobileMenuButtonProps {
-    expandMenu: boolean;
-    setExpandMenu: (expand: boolean) => void;
+  expandMenu: boolean;
+  setExpandMenu: (expand: boolean) => void;
 }
 
-const MobileMenuButton = ({ expandMenu,setExpandMenu,}: MobileMenuButtonProps) => {
-    const handleMenuToggle = () => {
-        setExpandMenu(!expandMenu);
-    };
+const MobileMenuButton = ({
+  expandMenu,
+  setExpandMenu,
+}: MobileMenuButtonProps) => {
+  const handleMenuToggle = () => {
+    setExpandMenu(!expandMenu);
+  };
 
-    const menuSpanData = [{ index: 1 }, { index: 2 }, { index: 3 }];
+  const menuSpanData = [{ index: 1 }, { index: 2 }, { index: 3 }];
 
-    return (
-        <StyledMenu className='flex lg:hidden' onClick={handleMenuToggle}>
-            {menuSpanData.map((item) => (
-                <StyledMenuSpan
-                    key={item.index}
-                    className={clsx(
-                        'bg-neutral-950 dark:bg-neutral-100 ',
-                        expandMenu && 'active',
-                    )}
-                />
-            ))}
-        </StyledMenu>
-    );
+  return (
+    <StyledMenu className="flex lg:hidden" onClick={handleMenuToggle}>
+      {menuSpanData.map((item) => (
+        <StyledMenuSpan
+          key={item.index}
+          className={clsx(
+            'bg-neutral-950 dark:bg-neutral-100 ',
+            expandMenu && 'active',
+          )}
+        />
+      ))}
+    </StyledMenu>
+  );
 };
 
 export default MobileMenuButton;

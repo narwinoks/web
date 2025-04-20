@@ -6,7 +6,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> {
-    try {
+  try {
     const readStatsResponse = await getReadStats();
     const allTimeSinceTodayResponse = await getALLTimeSinceToday();
 

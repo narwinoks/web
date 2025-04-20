@@ -1,7 +1,7 @@
-export  type TypePropsWork = {
-    company: string;
-    location: string;
-    position: string;
-    date: string;
-    description: string;
-}
+export type TypePropsWork = {
+  company: string;
+  location: string;
+  position: string;
+  date: string;
+  description: string;
+};

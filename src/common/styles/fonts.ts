@@ -1,4 +1,10 @@
-import { Fira_Code, Onest, Plus_Jakarta_Sans,Poppins, Sora } from 'next/font/google';
+import {
+  Fira_Code,
+  Onest,
+  Plus_Jakarta_Sans,
+  Poppins,
+  Sora,
+} from 'next/font/google';
 
 export const jakartaSans = Plus_Jakarta_Sans({
   variable: '--jakartaSans-font',
