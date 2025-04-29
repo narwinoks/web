@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import BlogCard from '@/common/components/elements/BlogCard';
 import BlogSkeleton from '@/common/components/skeleton/BlogSkeleton';
@@ -17,7 +17,14 @@ const Blog = () => {
   const [isLoadingFetchDataBlog, setIsLoadingFetchDataBlog] =
     useState<boolean>(true);
   useEffect(() => {
-    api.get('api/blog').then((response) => {
+    const params = new URLSearchParams();
+    const limit = 10;
+    if (limit) params.append('limit', limit.toString());
+    if (sort) params.append('sort', sort);
+    if (filter) params.append('category_id', filter.toString());
+    if (search) params.append('search', search);
+
+    api.get(`api/blog?${params.toString()}`).then((response) => {
       const transformed: BlogProps[] = response.data.data.map((item: any) => ({
         title: item.title,
         slug: item.slug,
@@ -30,7 +37,7 @@ const Blog = () => {
       setIsLoadingFetchDataBlog(false);
       setBlogs(transformed);
     });
-  }, []);
+  }, [filter, search, sort]);
   return (
     <>
       <Search search={search} setSearch={setSearch}></Search>
@@ -38,6 +45,7 @@ const Blog = () => {
         <h1 className="text-xl font-semibold">Read My Blog</h1>
         <Sort setSort={setSort}></Sort>
       </div>
+      {filter}
       <div className="mb-2 py-2 md:py-5">
         <Filtered filter={filter} setFilter={setFilter}></Filtered>
       </div>
@@ -58,9 +66,7 @@ const Blog = () => {
         ))
       )}
       <div className="mt-10 flex justify-center">
-        <button className="bg-primary  rounded-md px-4 py-2">
-          Load More {sort}
-        </button>
+        <button className="bg-primary  rounded-md px-4 py-2">Load More</button>
       </div>
     </>
   );

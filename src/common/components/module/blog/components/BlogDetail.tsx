@@ -1,3 +1,5 @@
+import parse from 'html-react-parser';
+import moment from 'moment';
 import React from 'react';
 
 import Hr from '@/common/components/elements/Hr';
@@ -16,38 +18,16 @@ const BlogDetail = ({ data }: BlogDetailProps) => {
           <h2 className="text-base">Authors: {data?.author}</h2>
           <div className="mb-2 text-lg">.</div>
           <h2 className="text-base">
-            March 21, 2024 ( {data && formatDateToAgo(data?.time)})
+            {moment(new Date(data?.time ?? new Date())).format(
+              'DD-MM-YYYY HH:mm:ss',
+            )}{' '}
+            ( {data && formatDateToAgo(data?.time)})
           </h2>
         </div>
         <p className="text-base">{data?.viewer} views</p>
       </div>
       <Hr></Hr>
-      <div className="text-base leading-7">
-        <p className="mb-3">What influences developers to adopt a product?</p>
-        <p className="mb-3">
-          Trust. The tools they adopt and advocate for impact their reputation.
-          You might have heard “no one ever got fired for buying IBM” in
-          reference to making good choices.
-        </p>
-        <p className="mb-3">
-          But picking older, well-adopted tools can be at odds with how fast the
-          industry moves. Is there a newer alternative that solves my needs
-          better? Ask your developer.
-        </p>
-        <p>
-          Keeping up the latest trends is part of their job. They need to know
-          what`s a fad and what`s here to stay. This is why experienced
-          developers become skeptical of almost everything. It`s hard to earn
-          their trust.
-        </p>
-        <p className="mb-3">
-          Developer marketing is about building trust. Here`s what`s worked for
-          me.
-        </p>
-        <h1 className="text-lg font-medium">
-          How can I improve my developer marketing?
-        </h1>
-      </div>
+      <div className="text-base leading-7">{data && parse(data.body)}</div>
     </div>
   );
 };

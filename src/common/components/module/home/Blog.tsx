@@ -11,7 +11,7 @@ const Blog = () => {
   const [isLoadingFetchDataBlog, setIsLoadingFetchDataBlog] =
     useState<boolean>(true);
   useEffect(() => {
-    api.get('api/blog').then((response) => {
+    api.get('api/blog?limit=3').then((response) => {
       const transformed: BlogProps[] = response.data.data.map((item: any) => ({
         title: item.title,
         slug: item.slug,

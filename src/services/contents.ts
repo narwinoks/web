@@ -35,13 +35,33 @@ export const saveBlog = async (request: any) => {
   return response;
 };
 
-export const getBlogs = async (limit: number, offset: number) => {
+export const getBlogs = async (
+  limit: number,
+  offset: number,
+  search: string,
+  sort: 'asc' | 'desc',
+  category_id?: number,
+) => {
   try {
+    const whereClause: any = {};
+
+    if (category_id) {
+      whereClause.category_id = String(category_id);
+    }
+
+    if (search) {
+      whereClause.title = {
+        contains: search,
+        mode: 'insensitive',
+      };
+    }
+
     const blogs = await prisma.posts.findMany({
       skip: offset,
       take: limit,
+      where: whereClause,
       orderBy: {
-        createdAt: 'desc',
+        createdAt: sort,
       },
       include: {
         author: {
@@ -58,13 +78,61 @@ export const getBlogs = async (limit: number, offset: number) => {
         },
       },
     });
-    const totalCount = await prisma.posts.count();
+
+    const totalCount = await prisma.posts.count({
+      where: whereClause,
+    });
+
     return {
-      data: blogs.map((element: any) => ({
+      data: blogs.map((element) => ({
         ...element,
-        count: Math.floor(Math.random() * 10),
+        count: Math.floor(Math.random() * 10), // opsional
       })),
-      totalCount: totalCount,
+      totalCount,
+      status: 200,
+    };
+  } catch (error: any) {
+    return {
+      data: error.message,
+      status: 500,
+    };
+  }
+};
+
+export const showBlogs = async (slug: string) => {
+  try {
+    const blog = await prisma.posts.findFirst({
+      where: { slug },
+      include: {
+        author: {
+          select: {
+            id: true,
+            username: true,
+          },
+        },
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+
+    if (!blog) {
+      return {
+        data: null,
+        status: 404,
+        message: 'Blog not found',
+      };
+    }
+    const blogWithViewers = {
+      ...blog,
+      viewer: 10,
+    };
+
+    return {
+      data: blogWithViewers,
       status: 200,
     };
   } catch (error: any) {

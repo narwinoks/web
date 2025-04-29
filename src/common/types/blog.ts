@@ -5,5 +5,5 @@ export type BlogProps = {
   viewer: string;
   time: string;
   author: string;
-  body?: string;
+  body: string;
 };
