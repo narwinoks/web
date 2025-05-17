@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 
 import { api } from '@/common/libs/useApi';
+import { TypePropsQuestion } from '@/common/types/question';
 
 import FormQuestion from './FormQuestion';
 import Heading from './Heading';
-import QuestuionLIst from './QuestuionLIst';
+import QuestionList from './QuestionList';
 
 const Question = () => {
   const [isSavingData, setIsSavingData] = useState<boolean>(false);
+  const [isLoadingFetchData, setLoadingFetchData] = useState<boolean>(false);
+  const [dataQuestion, setDataQuestion] = useState<TypePropsQuestion[]>([]);
   const handlerSaveData = async (json: {
     name: string;
     email: string;
@@ -22,9 +25,24 @@ const Question = () => {
       setIsSavingData(false);
       return false;
     } finally {
+      fetchDataQuestion();
       setIsSavingData(false);
     }
   };
+  const fetchDataQuestion = async () => {
+    setLoadingFetchData(true);
+    try {
+      const { data } = await api.get('/api/questions');
+      setDataQuestion(data?.data);
+    } catch (e) {
+      setLoadingFetchData(false);
+    } finally {
+      setLoadingFetchData(false);
+    }
+  };
+  useEffect(() => {
+    fetchDataQuestion();
+  }, []);
   return (
     <>
       <Heading></Heading>
@@ -32,7 +50,10 @@ const Question = () => {
         onSave={handlerSaveData}
         isLoading={isSavingData}
       ></FormQuestion>
-      <QuestuionLIst></QuestuionLIst>
+      <QuestionList
+        loading={isLoadingFetchData}
+        data={dataQuestion}
+      ></QuestionList>
     </>
   );
 };

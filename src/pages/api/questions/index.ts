@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { saveQuestion } from '@/services/questions';
+import { getQuestion, saveQuestion } from '@/services/questions';
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,9 +16,10 @@ export default async function handler(
         data: error,
       };
     }
-    res.status(200).json({ status: false, data: data.data });
+    res.status(200).json({ status: data.status, data: data.data });
   } else if (req.method === 'GET') {
-    res.status(200).json([]);
+    const response = await getQuestion();
+    res.status(response.status).json(response);
   } else {
     res.status(405).json({ message: 'Method not allowed' });
   }

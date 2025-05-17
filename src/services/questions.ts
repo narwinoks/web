@@ -17,16 +17,20 @@ export const saveQuestion = async (request: any) => {
   }
   return response;
 };
-export const getQuestion = async (request: any) => {
+export const getQuestion = async () => {
   const response: { data: any; status: number; error?: string } = {
     data: null,
     status: 500,
   };
   try {
-    const blog = await prisma.question.create({
-      data: request,
+    const question = await prisma.question.findMany({
+      orderBy: [
+        {
+          createdAt: 'desc',
+        },
+      ],
     });
-    response.data = blog;
+    response.data = question;
     response.status = 200;
   } catch (error: any) {
     response.data = error;
