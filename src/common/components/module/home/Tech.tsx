@@ -28,9 +28,8 @@ const Tech = () => {
         ))}
       </div>
       <p>
-        I`ve worked with and advised companies on developer marketing, developer
-        relations, building open-source communities, product-led growth, and
-        more.
+        I work at a startup company engaged in application development for
+        hospitals throughout Indonesia.
       </p>
     </section>
   );
