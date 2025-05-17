@@ -79,3 +79,14 @@ model Contents {
   updatedAt DateTime @updatedAt
   @@map("contents")
 }
+model Question {
+  id           String   @id @default(uuid())
+  email        String 
+  name         String 
+  question     String 
+  description  String   @db.Text()
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("questions") 
+}

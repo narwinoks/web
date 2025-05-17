@@ -17,4 +17,8 @@ export const MENU_ITEMS: MenuItemProps[] = [
     title: 'Dashboard',
     href: '/dashboard',
   },
+  {
+    title: 'Question',
+    href: '/question',
+  },
 ];

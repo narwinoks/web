@@ -41,7 +41,7 @@ const App = ({
 
           body,
           body * {
-            font-family: var(--poppins-font) !important;
+            font-family: var(--onestSans-font) !important;
           }
         `}
       </style>
