@@ -49,7 +49,7 @@ export const getBlogs = async (
     const whereClause: any = {};
 
     if (category_id) {
-      whereClause.category_id = String(category_id);
+      whereClause.category_id = category_id;
     }
 
     if (search) {

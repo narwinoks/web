@@ -23,7 +23,7 @@ export default async function handler(
     const offsetNumber = parseInt(offset as string, 10) || 0;
     const searchFix: any = search ?? '';
     const sortFix: any = sort ?? 'asc';
-    const categoryIDFix: any = category_id ?? '';
+    const categoryIDFix: any = parseInt(category_id as string) ?? '';
     const response = await getBlogs(
       limitNumber,
       offsetNumber,

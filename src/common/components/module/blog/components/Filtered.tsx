@@ -33,7 +33,7 @@ const Filtered = ({ setFilter, filter }: FilteredProps) => {
         const IconComponent = iconMap[componentName];
         return {
           ...item,
-          label: item.value,
+          label: item.label,
           icon: IconComponent ? <IconComponent size={20} /> : null,
         };
       });
