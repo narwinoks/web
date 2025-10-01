@@ -8,6 +8,9 @@ export const saveBlog = async (request: any) => {
     status: 500,
   };
   try {
+    const categoryId = parseInt(request.categoryId, 10);
+    const authorId = parseInt(request.authorId, 10);
+
     const stringSlug: string = slug(request.title, { lower: true });
     const blog = await prisma.posts.create({
       data: {
@@ -16,12 +19,12 @@ export const saveBlog = async (request: any) => {
         body: request.body,
         category: {
           connect: {
-            id: request.categoryId,
+            id: categoryId,
           },
         },
         author: {
           connect: {
-            id: request.authorId,
+            id: authorId,
           },
         },
       },

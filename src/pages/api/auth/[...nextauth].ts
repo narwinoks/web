@@ -22,7 +22,6 @@ export default NextAuth({
         const user = await prisma.user.findUnique({
           where: { username },
         });
-
         if (user && bcrypt.compareSync(password, user.password)) {
           return {
             id: user.id.toString(),

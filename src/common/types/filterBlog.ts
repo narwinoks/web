@@ -1,5 +1,5 @@
 export type FilterBlogProps = {
   label: string;
-  value: string;
+  value: number;
   icon: JSX.Element;
 };

@@ -13,7 +13,7 @@ import { FilterBlogProps } from '@/common/types/filterBlog';
 type BlogProps = {
   title: string;
   body: string;
-  categoryId: string;
+  categoryId: number | null;
   excerpt: string;
 };
 const CreateBlog = () => {
@@ -23,7 +23,7 @@ const CreateBlog = () => {
   const [data, setData] = useState<BlogProps>({
     title: '',
     body: '',
-    categoryId: '',
+    categoryId: null,
     excerpt: '',
   });
   const toast = useToast();
@@ -104,7 +104,7 @@ const CreateBlog = () => {
         <select
           name="categoryId"
           id="categoryId"
-          value={data.title || ''}
+          value={data.categoryId || ''}
           onChange={handleInputChange}
           className={clsx(
             'w-full rounded-md border border-[#DBDBDB] dark:border-borderDark',

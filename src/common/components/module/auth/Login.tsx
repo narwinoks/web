@@ -35,7 +35,6 @@ const Login = () => {
       username,
       password,
     });
-
     if (result?.ok) {
       toast.success({ heading: 'Success', message: 'Login Success' });
       router.push('/admin');
