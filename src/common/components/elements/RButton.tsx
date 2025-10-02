@@ -12,19 +12,19 @@ type RButtonProps = {
 };
 
 const colorClasses = {
-  primary: 'bg-blue-600 hover:bg-blue-700 text-white',
-  secondary: 'bg-gray-600 hover:bg-gray-700 text-white',
-  danger: 'bg-red-600 hover:bg-red-700 text-white',
-  success: 'bg-green-600 hover:bg-green-700 text-white',
+  primary: 'bg-slate-700 hover:bg-slate-600 text-white',
+  secondary: 'bg-slate-800 hover:bg-slate-700 text-slate-300',
+  danger: 'bg-red-800 hover:bg-red-700 text-white',
+  success: 'bg-green-800 hover:bg-green-700 text-white',
 };
 
+// Warna disesuaikan untuk kondisi disabled pada tema gelap
 const disabledClasses = {
-  primary: 'bg-blue-400 text-white cursor-not-allowed',
-  secondary: 'bg-gray-400 text-white cursor-not-allowed',
-  danger: 'bg-red-400 text-white cursor-not-allowed',
-  success: 'bg-green-400 text-white cursor-not-allowed',
+  primary: 'bg-slate-800 text-slate-500 cursor-not-allowed',
+  secondary: 'bg-slate-900 text-slate-600 cursor-not-allowed',
+  danger: 'bg-red-900 text-red-500 cursor-not-allowed',
+  success: 'bg-green-900 text-green-500 cursor-not-allowed',
 };
-
 const RButton: React.FC<RButtonProps> = ({
   children,
   color = 'primary',

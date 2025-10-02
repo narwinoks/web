@@ -84,6 +84,7 @@ model Question {
   email        String 
   name         String 
   question     String 
+  is_verify_admin Boolean    @default(false)
   description  String   @db.Text()
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt

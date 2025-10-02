@@ -24,6 +24,9 @@ export const getQuestion = async () => {
   };
   try {
     const question = await prisma.question.findMany({
+      where: {
+        is_verify_admin: true,
+      },
       orderBy: [
         {
           createdAt: 'desc',
