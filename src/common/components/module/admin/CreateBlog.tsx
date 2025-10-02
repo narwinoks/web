@@ -3,13 +3,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
-import ReactQuill from 'react-quill';
 
 import 'react-quill/dist/quill.bubble.css';
 
 import { useToast } from '@/common/hooks/ToastContext';
 import { api } from '@/common/libs/useApi';
 import { FilterBlogProps } from '@/common/types/filterBlog';
+
+import CustomEditor from '../../elements/CustomEditor';
 type BlogProps = {
   title: string;
   body: string;
@@ -17,7 +18,6 @@ type BlogProps = {
   excerpt: string;
 };
 const CreateBlog = () => {
-  const [value, setValue] = useState<string>('');
   const [categories, setCategories] = useState<FilterBlogProps[]>([]);
   const { data: session, status } = useSession();
   const [data, setData] = useState<BlogProps>({
@@ -33,10 +33,8 @@ const CreateBlog = () => {
     });
   }, []);
   const save = () => {
-    const body = value;
     setData((prevData) => ({
       ...prevData,
-      body: body,
       authorId: session?.user?.id,
     }));
     const json: any = data;
@@ -121,13 +119,11 @@ const CreateBlog = () => {
         </select>
       </div>
       <div className="mt-2">
-        <label htmlFor="Category">Body</label>
-        <ReactQuill
-          className="w-[100%]"
-          theme="bubble"
-          value={value}
-          onChange={setValue}
-          placeholder="Tell your story..."
+        <label htmlFor="body">Body</label>
+        <CustomEditor
+          name="body"
+          value={data.body || ''}
+          onChange={handleInputChange}
         />
       </div>
       <div className="ml-auto mt-5 flex justify-end">
