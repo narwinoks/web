@@ -6,6 +6,8 @@ import Hr from '@/common/components/elements/Hr';
 import { formatDateToAgo } from '@/common/helpers';
 import { BlogProps } from '@/common/types/blog';
 
+import Command from './Command';
+
 interface BlogDetailProps {
   data: BlogProps | undefined;
 }
@@ -28,6 +30,7 @@ const BlogDetail = ({ data }: BlogDetailProps) => {
       </div>
       <Hr></Hr>
       <div className="text-base leading-7">{data && parse(data.body)}</div>
+      <Command term={data?.slug ?? '-'}></Command>
     </div>
   );
 };
