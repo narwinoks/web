@@ -4,7 +4,7 @@ module.exports = {
       name: 'next-profile', // Nama aplikasi Anda
       script: './node_modules/next/dist/bin/next', // Jalankan Next.js secara langsung
       args: 'start -p 8000', // Berikan argumen start dan port di sini
-      cwd: '/home/narnowin/nodevenv/app/19/',
+      cwd: '/home/narnowin/app/',
     //   env: {
     //     NODE_ENV: 'production',
     //   },
