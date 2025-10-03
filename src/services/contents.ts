@@ -87,7 +87,7 @@ export const getBlogs = async (
     });
 
     return {
-      data: blogs.map((element) => ({
+      data: blogs.map((element: any) => ({
         ...element,
         count: Math.floor(Math.random() * 10), // opsional
       })),
