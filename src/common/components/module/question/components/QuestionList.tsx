@@ -1,10 +1,10 @@
-import { Question } from '@prisma/client';
 import React from 'react';
 
 import Card from '@/common/components/elements/Card';
+import { TypePropsQuestion } from '@/common/types/question';
 
 interface QuestionListProps {
-  data: Question[];
+  data: TypePropsQuestion[];
   loading: boolean;
 }
 
