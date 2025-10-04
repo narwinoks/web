@@ -29,7 +29,7 @@ export const Spotify = () => {
       const { data } = await axios.get(
         'https://winarno-backend.vercel.app/music',
       );
-      setTopTracks(data);
+      setTopTracks(data.data);
     } catch {
       setTopTracks([]);
     }
@@ -39,7 +39,7 @@ export const Spotify = () => {
       const { data } = await axios.get(
         'https://winarno-backend.vercel.app/get-now-playing',
       );
-      setNowPlaying(data);
+      setNowPlaying(data.data);
     } catch {
       setNowPlaying(null);
     }
@@ -79,7 +79,6 @@ export const Spotify = () => {
               loading="lazy"
             ></iframe>
           )}
-          w-12 h-12 rounded-md ml-4 shadow-sm
         </section>
 
         <section className="mt-12">
